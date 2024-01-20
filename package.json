@@ -1,0 +1,13 @@
+{
+  "name": "kblm-e2e-test-repo",
+  "version": "1.0.0",
+  "description": "This repo is used for Kornblume e2e tests",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^20.11.5"
+  }
+}
