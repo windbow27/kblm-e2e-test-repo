@@ -25,9 +25,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Run headless on CI only */
-    // headless: process.env.CI ? true: false,
-    headless: true,
+    headless: process.env.CI ? true: false,
 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
