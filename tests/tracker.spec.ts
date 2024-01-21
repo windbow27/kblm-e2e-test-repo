@@ -8,7 +8,7 @@ function testForImageTracker (images: string[], expectedResult: { pull: string; 
     const page = await context.newPage();
 
     await test.step('Navigate to tracker', async () => {
-      await page.goto('https://windbow27.github.io/Kornblume/tracker');
+      await page.goto('https://windbow27.github.io/Kornblume/tracker?ga_debug_mode=true');
     });
   
     await test.step('Close the tutorial', async () => {
@@ -30,9 +30,8 @@ function testForImageTracker (images: string[], expectedResult: { pull: string; 
       // choose images
       const fileChooser = await fileChooserPromise;
       await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)));
-    });
 
-    await test.step('Wait for the OCR processing', async () => {
+      // wait for OCR processing
       const processing = await page.getByText('Processing file')
       await expect(processing).toBeHidden({ timeout: 3 * 60 * 1000 });
     });
