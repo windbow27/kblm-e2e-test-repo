@@ -23,18 +23,19 @@ function testForImageTracker (images: string[], expectedResult: { pull: string; 
     });
 
     await test.step('Import OCR images', async () => {
-      // click import button
-      const fileChooserPromise = page.waitForEvent('filechooser');
-      await page.getByRole('button', { name: 'Import Images' }).click();
+      for (const img of images) {
+        // click import button
+        const fileChooserPromise = page.waitForEvent('filechooser');
+        await page.getByRole('button', { name: 'Import Images' }).click();
 
-      // choose images
-      const fileChooser = await fileChooserPromise;
-      await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)));
-    });
+        // choose image
+        const fileChooser = await fileChooserPromise;
+        await fileChooser.setFiles(path.join(__dirname, `/images/${img}`));
 
-    await test.step('Wait for the OCR processing', async () => {
-      const processing = await page.getByText('Processing file')
-      await expect(processing).toBeHidden({ timeout: 3 * 60 * 1000 });
+        // wait for OCR processing
+        const processing = await page.getByText('Processing file')
+        await expect(processing).toBeHidden({ timeout: 1 * 60 * 1000 });
+      }
     });
 
     await test.step('Verify if the results align with expectations', async () => {
@@ -118,7 +119,7 @@ test('Should correctly read multiple images uploaded at once',
 
 test('Should correctly read images that screenshotted at different moments',
   testForImageTracker(
-    ['test4/00.png', 'test3/01.png', 'test3/02.png'], 
+    ['test3/01.png', 'test3/02.png', 'test4/00.png'], 
     [
       { pull: '1', name: 'Erick'},
       { pull: '2', name: 'La Source'},
