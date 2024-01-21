@@ -14,6 +14,7 @@ For optimal performance, it is recommended to use Node.js version 18 or higher t
 ```bash
 cd kblm-e2e-test-repo
 npm install
+npx playwright install
 ```
 ## How to test
 
