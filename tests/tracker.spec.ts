@@ -132,5 +132,21 @@ test('Should correctly read images that screenshoted and uploaded at different m
       { pull: '20', name: 'Tooth Fairy'},
       { pull: '21', name: 'Oliver Fog'},
     ]
+  ));
+
+  test('Should correctly read triple Poltergeist', testForImageTracker(
+    ['test5/01.png'],
+    [
+      { pull: '1', name: 'APPLe'},
+      { pull: '2', name: 'Sputnik'},
+      { pull: '3', name: 'La Source'},
+      { pull: '4', name: 'ONiON'},
+      { pull: '5', name: 'Rabies'},
+      { pull: '6', name: 'La Source'},
+      { pull: '7', name: 'Poltergeist'},
+      { pull: '8', name: 'Poltergeist'},
+      { pull: '9', name: 'Poltergeist'},
+      { pull: '10', name: 'John Titor'},
+    ]
   )
 );
