@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "This repo is used for Kornblume e2e tests",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

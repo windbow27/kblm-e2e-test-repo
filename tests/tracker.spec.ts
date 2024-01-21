@@ -1,50 +1,60 @@
 import { test, expect, chromium } from '@playwright/test';
 import path from 'path';
 
-function testForImageTracker (images, expectedResult) {
+function testForImageTracker (images: string[], expectedResult: { pull: string; name: string}[]) {
   return async () => {
     const browser = await chromium.launch({
       headless: false
     });
     const context = await browser.newContext();
     const page = await context.newPage();
-    await page.goto('https://windbow27.github.io/Kornblume/tracker');
-  
-    // close tutorial
-    await page.locator('#tutorial').getByRole('button', { name: '✕' }).click();
-  
-    // set-up filters
-    await page.getByRole('button', { name: '' }).nth(0).click();
-    await page.getByRole('button', { name: '' }).nth(1).click();
-    await page.getByRole('button', { name: '' }).nth(2).click();
-    await page.getByRole('button', { name: '' }).nth(3).click();
-  
-    // click upload button
-    const fileChooserPromise = page.waitForEvent('filechooser');
-    await page.getByRole('button', { name: 'Import Images' }).click();
-  
-    // upload image
-    const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)));
 
-    // loading
-    const processing = await page.getByText('Processing file')
-    await expect(processing).toBeHidden({ timeout: 300 * 1000 });
+    await test.step('Navigate to tracker', async () => {
+      await page.goto('https://windbow27.github.io/Kornblume/tracker');
+    });
   
-    // result
-    for (const result of expectedResult) {
-      await expect(
-        page.getByRole('row').filter({ has: page.getByText(result.pull, { exact: true })})
-      ).toContainText(result.name);
-    }
+    await test.step('Close the tutorial', async () => {
+      await page.locator('#tutorial').getByRole('button', { name: '✕' }).click();
+    });
   
-    // ---------------------
-    await context.close();
-    await browser.close();
+    await test.step('Set up filters for rarity', async () => {
+      await page.getByRole('button', { name: '' }).nth(0).click();
+      await page.getByRole('button', { name: '' }).nth(1).click();
+      await page.getByRole('button', { name: '' }).nth(2).click();
+      await page.getByRole('button', { name: '' }).nth(3).click();
+    });
+
+    await test.step('Import OCR images', async () => {
+      // click import button
+      const fileChooserPromise = page.waitForEvent('filechooser');
+      await page.getByRole('button', { name: 'Import Images' }).click();
+
+      // choose images
+      const fileChooser = await fileChooserPromise;
+      await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)));
+    });
+
+    await test.step('Wait for the OCR processing', async () => {
+      const processing = await page.getByText('Processing file')
+      await expect(processing).toBeHidden({ timeout: 300 * 1000 });
+    });
+
+    await test.step('Verify if the results align with expectations', async () => {
+      for (const result of expectedResult) {
+        await expect(
+          page.getByRole('row').filter({ has: page.getByText(result.pull, { exact: true })})
+        ).toContainText(result.name);
+      }
+    });
+
+    await test.step('Close browser', async () => {
+      await context.close();
+      await browser.close();
+    });
   }
 }
 
-test('Should correctly read iPhone screenshots',
+test('Should correctly read iPhone screenshot',
   testForImageTracker(
     ['test1/01.png'], 
     [
@@ -62,7 +72,7 @@ test('Should correctly read iPhone screenshots',
   )
 );
 
-test('Should correctly read Windows screenshots',
+test('Should correctly read Windows screenshot',
   testForImageTracker(
     ['test2/01.png'], 
     [
@@ -101,13 +111,14 @@ test('Should correctly read multiple images uploaded at once',
       { pull: '15', name: 'Bunny Bunny'},
       { pull: '16', name: 'aliEn T'},
       { pull: '17', name: 'Bunny Bunny'},
+      { pull: '18', name: 'TTT'},
       { pull: '19', name: 'Pavia'},
       { pull: '20', name: 'Tooth Fairy'},
     ]
   )
 );
 
-test('Should correctly read images that screenshoted and uploaded at different moments',
+test('Should correctly read images that screenshotted at different moments',
   testForImageTracker(
     ['test4/00.png', 'test3/01.png', 'test3/02.png'], 
     [
@@ -128,6 +139,7 @@ test('Should correctly read images that screenshoted and uploaded at different m
       { pull: '15', name: 'Bunny Bunny'},
       { pull: '16', name: 'aliEn T'},
       { pull: '17', name: 'Bunny Bunny'},
+      { pull: '18', name: 'TTT'},
       { pull: '19', name: 'Pavia'},
       { pull: '20', name: 'Tooth Fairy'},
       { pull: '21', name: 'Oliver Fog'},

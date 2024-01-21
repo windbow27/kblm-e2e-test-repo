@@ -15,10 +15,27 @@ For optimal performance, it is recommended to use Node.js version 18 or higher t
 cd kblm-e2e-test-repo
 npm install
 ```
-## Deployment
+## How to test
 
 Run the tests using the following command:
 ```bash
 npx playwright test
 ```
 
+You could also run a single test with the title
+```bash
+npx playwright test -g "Should correctly read iPhone screenshot"
+```
+
+## Development
+
+There's debug mode with [Playwright Inspector](https://playwright.dev/docs/debug)
+```bash
+npx playwright test -g "Should correctly read iPhone screenshot" --debug
+```
+
+You could add a specific breakpoint by [page.pause()](https://playwright.dev/docs/api/class-page#page-pause) method to your test:
+```js
+await page.pause();
+```
+![](https://user-images.githubusercontent.com/13063165/219473050-122be4c2-31d0-4cbd-aa8b-8588e8b781a6.png)
