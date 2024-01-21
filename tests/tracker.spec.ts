@@ -7,8 +7,8 @@ function testForImageTracker(
 ) {
   return async ({ page }) => {
     await test.step("Navigate to tracker", async () => {
-      await page.goto("https://windbow27.github.io/Kornblume/tracker");
-      // await page.goto('http://localhost:5173/Kornblume/tracker');
+      // Please run the Kornblume local server first if you want to run tests in local environment
+      await page.goto("/Kornblume/tracker");
     });
 
     await test.step("Close the tutorial", async () => {
