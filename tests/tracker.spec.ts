@@ -1,39 +1,37 @@
-import { test, expect, chromium } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import path from 'path';
 
 function testForImageTracker (images: string[], expectedResult: { pull: string; name: string}[]) {
-  return async () => {
-    const browser = await chromium.launch();
-    const context = await browser.newContext();
-    const page = await context.newPage();
-
+  return async ({page}) => {
     await test.step('Navigate to tracker', async () => {
-      await page.goto('https://windbow27.github.io/Kornblume/tracker?ga_debug_mode=true');
+      // await page.goto('https://windbow27.github.io/Kornblume/tracker');
+      await page.goto('https://frantw.github.io/Kornblume/tracker');
+      // await page.goto('http://localhost:5173/Kornblume/tracker');
     });
   
     await test.step('Close the tutorial', async () => {
-      await page.locator('#tutorial').getByRole('button', { name: '✕' }).click();
+      await page.locator('#tutorial').getByRole('button', { name: '✕' }).click({ force: true });
     });
   
-    await test.step('Set up filters for rarity', async () => {
-      await page.getByRole('button', { name: '' }).nth(0).click();
-      await page.getByRole('button', { name: '' }).nth(1).click();
-      await page.getByRole('button', { name: '' }).nth(2).click();
-      await page.getByRole('button', { name: '' }).nth(3).click();
-    });
-
     await test.step('Import OCR images', async () => {
       // click import button
       const fileChooserPromise = page.waitForEvent('filechooser');
-      await page.getByRole('button', { name: 'Import Images' }).click();
+      await page.getByRole('button', { name: 'Import Images' }).click({ force: true });
 
       // choose images
       const fileChooser = await fileChooserPromise;
-      await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)));
+      await fileChooser.setFiles(images.map((img) => path.join(__dirname, `/images/${img}`)), { force: true });
 
       // wait for OCR processing
       const processing = await page.getByText('Processing file')
       await expect(processing).toBeHidden({ timeout: 3 * 60 * 1000 });
+    });
+
+    await test.step('Set up filters for rarity', async () => {
+      await page.getByRole('button', { name: '' }).nth(0).click({ force: true });
+      await page.getByRole('button', { name: '' }).nth(1).click({ force: true });
+      await page.getByRole('button', { name: '' }).nth(2).click({ force: true });
+      await page.getByRole('button', { name: '' }).nth(3).click({ force: true });
     });
 
     await test.step('Verify if the results align with expectations', async () => {
@@ -42,11 +40,6 @@ function testForImageTracker (images: string[], expectedResult: { pull: string; 
           page.getByRole('row').filter({ has: page.getByText(result.pull, { exact: true })})
         ).toContainText(result.name);
       }
-    });
-
-    await test.step('Close browser', async () => {
-      await context.close();
-      await browser.close();
     });
   }
 }
