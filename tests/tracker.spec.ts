@@ -3,9 +3,7 @@ import path from 'path';
 
 function testForImageTracker (images: string[], expectedResult: { pull: string; name: string}[]) {
   return async () => {
-    const browser = await chromium.launch({
-      headless: true
-    });
+    const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
 
@@ -36,7 +34,7 @@ function testForImageTracker (images: string[], expectedResult: { pull: string; 
 
     await test.step('Wait for the OCR processing', async () => {
       const processing = await page.getByText('Processing file')
-      await expect(processing).toBeHidden({ timeout: 300 * 1000 });
+      await expect(processing).toBeHidden({ timeout: 3 * 60 * 1000 });
     });
 
     await test.step('Verify if the results align with expectations', async () => {
