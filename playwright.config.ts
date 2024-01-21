@@ -62,9 +62,14 @@ export default defineConfig({
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
     },
-    {
+
+    // Test Safari only in CI environment due to unsuitable Windows local environment
+    process.env.CI ? {
       name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
+      use: { ...devices['iPhone 14'] },
+    }: {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 14'], defaultBrowserType: 'chromium' },
     },
 
     /* Test against branded browsers. */
