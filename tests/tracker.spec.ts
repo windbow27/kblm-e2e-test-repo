@@ -183,3 +183,22 @@ test(
     ]
   )
 );
+
+test(
+  "Should not read the year into 2025",
+  testForImageTracker(
+    ["test6/01.png"],
+    [
+      { pull: "1", name: "Kanjira" },
+      { pull: "2", name: "Oliver Fog" },
+      { pull: "3", name: "Poltergeist" },
+      { pull: "4", name: "Sputnik" },
+      { pull: "5", name: "Door" },
+      { pull: "6", name: "Ms. Radio" },
+      { pull: "7", name: "Necrologist" },
+      { pull: "8", name: "Poltergeist" },
+      { pull: "9", name: "Bette" },
+      { pull: "10", name: "ONiON" },
+    ]
+  )
+);
