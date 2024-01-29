@@ -61,9 +61,9 @@ function testForImageTracker(
         const row = page
           .getByRole("row")
           .filter({ has: page.getByText(result.pull, { exact: true }) })
-          await expect(row).toContainText(result.name);
-          await expect(row).toContainText(result.time);
-        }
+        await expect(row).toContainText(result.name);
+        await expect(row).toContainText(result.time);
+      }
     });
   };
 }
@@ -73,16 +73,16 @@ test(
   testForImageTracker(
     ["test1/01.png"],
     [
-      { pull: "1", name: "Horropedia", time: "28/12/2023 05:06" },
-      { pull: "2", name: "Erick", time: "28/12/2023 05:06" },
-      { pull: "3", name: "Jessica", time: "28/12/2023 05:06" },
-      { pull: "4", name: "Nick Bottom", time: "28/12/2023 05:06" },
-      { pull: "5", name: "Horropedia", time: "28/12/2023 05:06" },
-      { pull: "6", name: "The Fool", time: "28/12/2023 05:06" },
-      { pull: "7", name: "ONiON", time: "28/12/2023 05:06" },
-      { pull: "8", name: "Mesmer Jr.", time: "28/12/2023 05:06" },
-      { pull: "9", name: "The Fool", time: "28/12/2023 05:06" },
-      { pull: "10", name: "Door", time: "28/12/2023 05:06" },
+      { pull: "1", name: "Horropedia", time: "28/12/2023 05:06:20" },
+      { pull: "2", name: "Erick", time: "28/12/2023 05:06:20" },
+      { pull: "3", name: "Jessica", time: "28/12/2023 05:06:20" },
+      { pull: "4", name: "Nick Bottom", time: "28/12/2023 05:06:20" },
+      { pull: "5", name: "Horropedia", time: "28/12/2023 05:06:20" },
+      { pull: "6", name: "The Fool", time: "28/12/2023 05:06:20" },
+      { pull: "7", name: "ONiON", time: "28/12/2023 05:06:20" },
+      { pull: "8", name: "Mesmer Jr.", time: "28/12/2023 05:06:20" },
+      { pull: "9", name: "The Fool", time: "28/12/2023 05:06:20" },
+      { pull: "10", name: "Door", time: "28/12/2023 05:06:20" },
     ]
   )
 );
@@ -92,16 +92,16 @@ test(
   testForImageTracker(
     ["test2/01.png"],
     [
-      { pull: "1", name: "John Titor", time: "07/12/2023 12:21" },
-      { pull: "2", name: "La Source", time: "07/12/2023 12:21" },
-      { pull: "3", name: "Sputnik", time: "07/12/2023 12:21" },
-      { pull: "4", name: "Tooth Fairy", time: "07/12/2023 12:21" },
-      { pull: "5", name: "Mesmer Jr.", time: "07/12/2023 12:21" },
-      { pull: "6", name: "Necrologist", time: "07/12/2023 12:21" },
-      { pull: "7", name: "Satsuki", time: "07/12/2023 12:21" },
-      { pull: "8", name: "Leilani", time: "07/12/2023 12:21" },
-      { pull: "9", name: "Nick Bottom", time: "07/12/2023 12:21" },
-      { pull: "10", name: "Oliver Fog", time: "07/12/2023 12:21" },
+      { pull: "1", name: "John Titor", time: "07/12/2023 12:21:31" },
+      { pull: "2", name: "La Source", time: "07/12/2023 12:21:31" },
+      { pull: "3", name: "Sputnik", time: "07/12/2023 12:21:31" },
+      { pull: "4", name: "Tooth Fairy", time: "07/12/2023 12:21:31" },
+      { pull: "5", name: "Mesmer Jr.", time: "07/12/2023 12:21:31" },
+      { pull: "6", name: "Necrologist", time: "07/12/2023 12:21:31" },
+      { pull: "7", name: "Satsuki", time: "07/12/2023 12:21:31" },
+      { pull: "8", name: "Leilani", time: "07/12/2023 12:21:31" },
+      { pull: "9", name: "Nick Bottom", time: "07/12/2023 12:21:31" },
+      { pull: "10", name: "Oliver Fog", time: "07/12/2023 12:21:31" },
     ]
   )
 );
@@ -111,26 +111,26 @@ test(
   testForImageTracker(
     ["test3/01.png", "test3/02.png"],
     [
-      { pull: "1", name: "Erick", time: "07/12/2023 10:08" },
-      { pull: "2", name: "La Source", time: "07/12/2023 10:09" },
-      { pull: "3", name: "Satsuki", time: "07/12/2023 10:09" },
-      { pull: "4", name: "Sputnik", time: "07/12/2023 10:09" },
-      { pull: "5", name: "aliEn T", time: "07/12/2023 10:09" },
-      { pull: "6", name: "Cristallo", time: "07/12/2023 10:10" },
-      { pull: "7", name: "Twins Sleep", time: "07/12/2023 10:10" },
-      { pull: "8", name: "Sputnik", time: "07/12/2023 10:10" },
-      { pull: "9", name: "John Titor", time: "07/12/2023 10:10" },
-      { pull: "10", name: "Darley Clatter", time: "07/12/2023 10:10" },
-      { pull: "11", name: "ONiON", time: "07/12/2023 10:10" },
-      { pull: "12", name: "Ms. Radio", time: "07/12/2023 10:10" },
-      { pull: "13", name: "Ms. Moissan", time: "07/12/2023 10:10" },
-      { pull: "14", name: "Erick", time: "07/12/2023 10:10" },
-      { pull: "15", name: "Bunny Bunny", time: "07/12/2023 10:10" },
-      { pull: "16", name: "aliEn T", time: "07/12/2023 10:11" },
-      { pull: "17", name: "Bunny Bunny", time: "07/12/2023 10:11" },
-      { pull: "18", name: "TTT", time: "07/12/2023 10:11" },
-      { pull: "19", name: "Pavia", time: "07/12/2023 10:11" },
-      { pull: "20", name: "Tooth Fairy", time: "07/12/2023 10:11" },
+      { pull: "1", name: "Erick", time: "07/12/2023 10:08:24:56" },
+      { pull: "2", name: "La Source", time: "07/12/2023 10:09:07" },
+      { pull: "3", name: "Satsuki", time: "07/12/2023 10:09:23" },
+      { pull: "4", name: "Sputnik", time: "07/12/2023 10:09:42" },
+      { pull: "5", name: "aliEn T", time: "07/12/2023 10:09:52" },
+      { pull: "6", name: "Cristallo", time: "07/12/2023 10:10:01" },
+      { pull: "7", name: "Twins Sleep", time: "07/12/2023 10:10:01" },
+      { pull: "8", name: "Sputnik", time: "07/12/2023 10:10:01" },
+      { pull: "9", name: "John Titor", time: "07/12/2023 10:10:01" },
+      { pull: "10", name: "Darley Clatter", time: "07/12/2023 10:10:01" },
+      { pull: "11", name: "ONiON", time: "07/12/2023 10:10:01" },
+      { pull: "12", name: "Ms. Radio", time: "07/12/2023 10:10:01" },
+      { pull: "13", name: "Ms. Moissan", time: "07/12/2023 10:10:01" },
+      { pull: "14", name: "Erick", time: "07/12/2023 10:10:01" },
+      { pull: "15", name: "Bunny Bunny", time: "07/12/2023 10:10:01" },
+      { pull: "16", name: "aliEn T", time: "07/12/2023 10:11:01" },
+      { pull: "17", name: "Bunny Bunny", time: "07/12/2023 10:11:26" },
+      { pull: "18", name: "TTT", time: "07/12/2023 10:11:32" },
+      { pull: "19", name: "Pavia", time: "07/12/2023 10:11:38" },
+      { pull: "20", name: "Tooth Fairy", time: "07/12/2023 10:11:42" },
     ]
   )
 );
@@ -140,27 +140,27 @@ test(
   testForImageTracker(
     ["test4/00.png", "test3/01.png", "test3/02.png"],
     [
-      { pull: "1", name: "Erick", time: "07/12/2023 10:08" },
-      { pull: "2", name: "La Source", time: "07/12/2023 10:09" },
-      { pull: "3", name: "Satsuki", time: "07/12/2023 10:09" },
-      { pull: "4", name: "Sputnik", time: "07/12/2023 10:09" },
-      { pull: "5", name: "aliEn T", time: "07/12/2023 10:09" },
-      { pull: "6", name: "Cristallo", time: "07/12/2023 10:10" },
-      { pull: "7", name: "Twins Sleep", time: "07/12/2023 10:10" },
-      { pull: "8", name: "Sputnik", time: "07/12/2023 10:10" },
-      { pull: "9", name: "John Titor", time: "07/12/2023 10:10" },
-      { pull: "10", name: "Darley Clatter", time: "07/12/2023 10:10" },
-      { pull: "11", name: "ONiON", time: "07/12/2023 10:10" },
+      { pull: "1", name: "Erick", time: "07/12/2023 10:08:24:56" },
+      { pull: "2", name: "La Source", time: "07/12/2023 10:09:07" },
+      { pull: "3", name: "Satsuki", time: "07/12/2023 10:09:23" },
+      { pull: "4", name: "Sputnik", time: "07/12/2023 10:09:42" },
+      { pull: "5", name: "aliEn T", time: "07/12/2023 10:09:52" },
+      { pull: "6", name: "Cristallo", time: "07/12/2023 10:10:01" },
+      { pull: "7", name: "Twins Sleep", time: "07/12/2023 10:10:01" },
+      { pull: "8", name: "Sputnik", time: "07/12/2023 10:10:01" },
+      { pull: "9", name: "John Titor", time: "07/12/2023 10:10:01" },
+      { pull: "10", name: "Darley Clatter", time: "07/12/2023 10:10:01" },
+      { pull: "11", name: "ONiON", time: "07/12/2023 10:10:01" },
       { pull: "12", name: "Ms. Radio", time: "07/12/2023 10:10" },
-      { pull: "13", name: "Ms. Moissan", time: "07/12/2023 10:10" },
-      { pull: "14", name: "Erick", time: "07/12/2023 10:10" },
-      { pull: "15", name: "Bunny Bunny", time: "07/12/2023 10:10" },
-      { pull: "16", name: "aliEn T", time: "07/12/2023 10:11" },
-      { pull: "17", name: "Bunny Bunny", time: "07/12/2023 10:11" },
-      { pull: "18", name: "TTT", time: "07/12/2023 10:11" },
-      { pull: "19", name: "Pavia", time: "07/12/2023 10:11" },
-      { pull: "20", name: "Tooth Fairy", time: "07/12/2023 10:11" },
-      { pull: "21", name: "Oliver Fog", time: "28/12/2023 05:03" },
+      { pull: "13", name: "Ms. Moissan", time: "07/12/2023 10:10:01" },
+      { pull: "14", name: "Erick", time: "07/12/2023 10:10:01" },
+      { pull: "15", name: "Bunny Bunny", time: "07/12/2023 10:10:01" },
+      { pull: "16", name: "aliEn T", time: "07/12/2023 10:11:01" },
+      { pull: "17", name: "Bunny Bunny", time: "07/12/2023 10:11:26" },
+      { pull: "18", name: "TTT", time: "07/12/2023 10:11:32" },
+      { pull: "19", name: "Pavia", time: "07/12/2023 10:11:38" },
+      { pull: "20", name: "Tooth Fairy", time: "07/12/2023 10:11:42" },
+      { pull: "21", name: "Oliver Fog", time: "28/12/2023 05:03:50" },
     ]
   )
 );
@@ -170,16 +170,16 @@ test(
   testForImageTracker(
     ["test5/01.png"],
     [
-      { pull: "1", name: "APPLe", time: "07/12/2023 23:23" },
-      { pull: "2", name: "Sputnik", time: "07/12/2023 23:23" },
-      { pull: "3", name: "La Source", time: "07/12/2023 23:23" },
-      { pull: "4", name: "ONiON", time: "07/12/2023 23:23" },
-      { pull: "5", name: "Rabies", time: "07/12/2023 23:23" },
-      { pull: "6", name: "La Source", time: "07/12/2023 23:23" },
-      { pull: "7", name: "Poltergeist", time: "07/12/2023 23:23" },
-      { pull: "8", name: "Poltergeist", time: "07/12/2023 23:23" },
-      { pull: "9", name: "Poltergeist", time: "07/12/2023 23:23" },
-      { pull: "10", name: "John Titor", time: "07/12/2023 23:23" },
+      { pull: "1", name: "APPLe", time: "07/12/2023 23:23:50" },
+      { pull: "2", name: "Sputnik", time: "07/12/2023 23:23:50" },
+      { pull: "3", name: "La Source", time: "07/12/2023 23:23:50" },
+      { pull: "4", name: "ONiON", time: "07/12/2023 23:23:50" },
+      { pull: "5", name: "Rabies", time: "07/12/2023 23:23:50" },
+      { pull: "6", name: "La Source", time: "07/12/2023 23:23:50" },
+      { pull: "7", name: "Poltergeist", time: "07/12/2023 23:23:50" },
+      { pull: "8", name: "Poltergeist", time: "07/12/2023 23:23:50" },
+      { pull: "9", name: "Poltergeist", time: "07/12/2023 23:23:50" },
+      { pull: "10", name: "John Titor", time: "07/12/2023 23:23:50" },
     ]
   )
 );
@@ -189,16 +189,16 @@ test(
   testForImageTracker(
     ["test6/01.png"],
     [
-      { pull: "1", name: "TTT", time: "18/01/2024 10:08" },
-      { pull: "2", name: "Click", time: "18/01/2024 10:08" },
-      { pull: "3", name: "Eagle", time: "18/01/2024 10:08" },
-      { pull: "4", name: "Nick Bottom", time: "18/01/2024 10:08" },
-      { pull: "5", name: "Leilani", time: "18/01/2024 10:08" },
-      { pull: "6", name: "Rabies", time: "18/01/2024 12:40" },
-      { pull: "7", name: "Erick", time: "18/01/2024 12:40" },
-      { pull: "8", name: "Sputnik", time: "18/01/2024 12:40" },
-      { pull: "9", name: "Mesmer Jr.", time: "18/01/2024 12:40" },
-      { pull: "10", name: "Bette", time: "18/01/2024 12:40" },
+      { pull: "1", name: "TTT", time: "18/01/2024 10:08:24" },
+      { pull: "2", name: "Click", time: "18/01/2024 10:08:24" },
+      { pull: "3", name: "Eagle", time: "18/01/2024 10:08:24" },
+      { pull: "4", name: "Nick Bottom", time: "18/01/2024 10:08:24" },
+      { pull: "5", name: "Leilani", time: "18/01/2024 10:08:24" },
+      { pull: "6", name: "Rabies", time: "18/01/2024 12:40:26" },
+      { pull: "7", name: "Erick", time: "18/01/2024 12:40:26" },
+      { pull: "8", name: "Sputnik", time: "18/01/2024 12:40:26" },
+      { pull: "9", name: "Mesmer Jr.", time: "18/01/2024 12:40:26" },
+      { pull: "10", name: "Bette", time: "18/01/2024 12:40:26" },
     ]
   )
 );
@@ -208,16 +208,16 @@ test(
   testForImageTracker(
     ["test6/01.png"],
     [
-      { pull: "1", name: "Kanjira" },
-      { pull: "2", name: "Oliver Fog" },
-      { pull: "3", name: "Poltergeist" },
-      { pull: "4", name: "Sputnik" },
-      { pull: "5", name: "Door" },
-      { pull: "6", name: "Ms. Radio" },
-      { pull: "7", name: "Necrologist" },
-      { pull: "8", name: "Poltergeist" },
-      { pull: "9", name: "Bette" },
-      { pull: "10", name: "ONiON" },
+      { pull: "1", name: "Kanjira", time: "18/01/2024 11:51:17" },
+      { pull: "2", name: "Oliver Fog", time: "18/01/2024 11:51:17" },
+      { pull: "3", name: "Poltergeist", time: "18/01/2024 11:51:17" },
+      { pull: "4", name: "Sputnik", time: "18/01/2024 11:51:17" },
+      { pull: "5", name: "Door", time: "18/01/2024 11:51:17" },
+      { pull: "6", name: "Ms. Radio", time: "18/01/2024 11:51:17" },
+      { pull: "7", name: "Necrologist", time: "18/01/2024 11:51:17" },
+      { pull: "8", name: "Poltergeist", time: "18/01/2024 11:51:17" },
+      { pull: "9", name: "Bette", time: "18/01/2024 11:51:17" },
+      { pull: "10", name: "ONiON", time: "21/01/2024 08:48:53" },
     ]
   )
 );
