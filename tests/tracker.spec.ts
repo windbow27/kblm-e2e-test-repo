@@ -207,7 +207,7 @@ test(
 test(
   "Should not read the year into 2025",
   testForImageTracker(
-    ["test6/01.png"],
+    ["test7/01.png"],
     [
       { pull: "1", name: "Kanjira", time: "18/01/2024 11:51:17" },
       { pull: "2", name: "Oliver Fog", time: "18/01/2024 11:51:17" },
