@@ -8,7 +8,8 @@ function testForImageTracker(
   return async ({ page }) => {
     await test.step("Navigate to tracker", async () => {
       // Please run the Kornblume local server first if you want to run tests in local environment
-      await page.goto("/tracker?debug=1");
+      // await page.goto("/tracker?debug=1");
+      await page.goto("/Kornblume/tracker?debug=1"); // this is the correct link right?
     });
 
     await test.step("Close the tutorial", async () => {
@@ -111,7 +112,7 @@ test(
   testForImageTracker(
     ["test3/01.png", "test3/02.png"],
     [
-      { pull: "1", name: "Erick", time: "07/12/2023 10:08:24:56" },
+      { pull: "1", name: "Erick", time: "07/12/2023 10:08:56" },
       { pull: "2", name: "La Source", time: "07/12/2023 10:09:07" },
       { pull: "3", name: "Satsuki", time: "07/12/2023 10:09:23" },
       { pull: "4", name: "Sputnik", time: "07/12/2023 10:09:42" },
@@ -140,7 +141,7 @@ test(
   testForImageTracker(
     ["test4/00.png", "test3/01.png", "test3/02.png"],
     [
-      { pull: "1", name: "Erick", time: "07/12/2023 10:08:24:56" },
+      { pull: "1", name: "Erick", time: "07/12/2023 10:08:56" },
       { pull: "2", name: "La Source", time: "07/12/2023 10:09:07" },
       { pull: "3", name: "Satsuki", time: "07/12/2023 10:09:23" },
       { pull: "4", name: "Sputnik", time: "07/12/2023 10:09:42" },
