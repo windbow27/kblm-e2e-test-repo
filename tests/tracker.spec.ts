@@ -217,7 +217,7 @@ test(
       { pull: "6", name: "Ms. Radio", time: "18/01/2024 11:51:17" },
       { pull: "7", name: "Necrologist", time: "18/01/2024 11:51:17" },
       { pull: "8", name: "Poltergeist", time: "18/01/2024 11:51:17" },
-      { pull: "9", name: "Bette", time: "18/01/2024 11:51:17" },
+      { pull: "9", name: "Bette", time: "18/01/2024 11:51:37" },
       { pull: "10", name: "ONiON", time: "21/01/2024 08:48:53" },
     ]
   )
