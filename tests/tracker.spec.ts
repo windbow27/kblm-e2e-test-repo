@@ -1,11 +1,11 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
 import path from "path";
 
 function testForImageTracker(
   images: string[],
   expectedResult: { pull: string; name: string; time: string }[]
 ) {
-  return async ({ page }) => {
+  return async ({ page }: { page: Page }) => {
     await test.step("Navigate to tracker", async () => {
       // Please run the Kornblume local server first if you want to run tests in local environment
       await page.goto("/Kornblume/tracker");
@@ -28,8 +28,7 @@ function testForImageTracker(
       // choose images
       const fileChooser = await fileChooserPromise;
       await fileChooser.setFiles(
-        images.map((img) => path.join(__dirname, `/images/${img}`)),
-        { force: true }
+        images.map((img) => path.join(__dirname, `/images/${img}`))
       );
 
       // wait for OCR processing
