@@ -22,7 +22,7 @@ function testForImageTracker(
       // click import button
       const fileChooserPromise = page.waitForEvent("filechooser");
       await page
-        .getByRole("button", { name: "Import Images" })
+        .getByRole("button", { name: "Import" })
         .click({ force: true });
 
       // choose images
