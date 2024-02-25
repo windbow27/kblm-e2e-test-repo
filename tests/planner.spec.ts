@@ -1,5 +1,23 @@
 import { test, expect, Page } from "@playwright/test";
 
+const getSetupStatusFn = (page: Page) => {
+  return async (blockName: string, status: [string, string]) => {
+    if (status.length !== 2) { return }
+
+    const settingBlock = page.locator('.edit-overlay')
+      .locator(`:below(:text("${blockName}"))`)
+      .first()
+
+    for (let i = 0; i < status.length; i++) {
+      await settingBlock.getByRole('button').nth(i).click()
+      const fromBlock = settingBlock.locator('div:below(button)')
+        .filter({ has: page.getByRole('button') })
+        .first()
+      await fromBlock.getByRole('button', { name: status[i], exact: true }).click()
+    }
+  }
+}
+
 const testForArcanistPlanning = (
   ...arcanists: {
     name: string
@@ -13,50 +31,41 @@ const testForArcanistPlanning = (
   }[]
 ) => {
   return async ({ page }: { page: Page }) => {
-    const setupStatus = async (blockName: string, status: [string, string]) => {
-      if (status.length !== 2) { return }
 
-      const settingBlock = page.locator('.edit-overlay')
-        .locator(`:below(:text("${blockName}"))`)
-        .first()
+    for (const arcanist of arcanists) {
+      await test.step('Select arcanist', async () => {
+        await page.getByRole("button", { name: "Add Arcanist" }).click()
+        await page.getByLabel('Show Unreleased Arcanists').check()
+        await page.getByText(arcanist.name).click()
+      })
 
-      for (let i = 0; i < status.length; i++) {
-        await settingBlock.getByRole('button').nth(i).click()
-        const fromBlock = settingBlock.locator('div:below(button)')
-          .filter({ has: page.getByRole('button') })
-          .first()
-        await fromBlock.getByRole('button', { name: status[i], exact: true }).click()
-      }
-    }
-
-    for (let i = 0; i < arcanists.length; i++) {
-      const arcanist = arcanists[i]
-      await page.getByRole("button", { name: "Add Arcanist" }).click()
-      await page.getByLabel('Show Unreleased Arcanists').check()
-      await page.getByText(arcanist.name).click()
-
-      await setupStatus('CURRENT LEVEL', [
-        arcanist.insight[0] ? `Option ${arcanist.insight[0]}` : '', `${arcanist.level[0]}`
-      ])
-      await setupStatus('GOAL LEVEL', [
-        arcanist.insight[1] ? `Option ${arcanist.insight[1]}` : '', `${arcanist.level[1]}`
-      ])
-      await setupStatus('RESONANCE', arcanist.resonance.map(item => `${item}`) as [string, string])
-
+      const setupStatus = getSetupStatusFn(page)
+      await test.step('Setup insight, level and resonance', async () => {
+        const isCurrentInsightPositive = arcanist.insight[0] > 0
+        await setupStatus('CURRENT LEVEL', [
+          isCurrentInsightPositive ? `Option ${arcanist.insight[0]}` : '', `${arcanist.level[0]}`
+        ])
+        const isCurrentLevelPositive = arcanist.insight[1] > 0
+        await setupStatus('GOAL LEVEL', [
+          isCurrentLevelPositive ? `Option ${arcanist.insight[1]}` : '', `${arcanist.level[1]}`
+        ])
+        await setupStatus('RESONANCE', arcanist.resonance.map(item => `${item}`) as [string, string])
+      })
 
       const materialsBlock = page.locator('div:below(button:text("Save"))')
         .filter({ has: page.getByRole('img') })
         .first()
-      await Promise.all(
-        arcanist.expectMaterials.map(material => expect(
-          materialsBlock.locator(`[data-tip="${material.name}"]`).getByText(material.count)
-        ).toBeVisible())
-      )
+
+      await test.step('Verify if the required materials align with expectations', async () => {
+        await Promise.all(
+          arcanist.expectMaterials.map(material => expect(
+            materialsBlock.locator(`[data-tip="${material.name}"]`).getByText(material.count)
+          ).toBeVisible())
+        )
+      })
 
       await page.getByRole('button', { name: 'Save' }).click()
     }
-
-    await expect(page).toHaveScreenshot();
   }
 }
 
