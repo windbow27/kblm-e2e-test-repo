@@ -1,7 +1,7 @@
 
 # kblm-e2e-test-repo
 
-This repository is used for [Kornblume](https://windbow27.github.io/Kornblume/) e2e tests.
+This repository is used for [Kornblume](https://windbow27.github.io/kornblume/) e2e tests.
 
 ## Getting Started
 
